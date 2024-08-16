@@ -1,0 +1,22 @@
+{
+  "name": "namaste_react_16_aug",
+  "version": "1.0.0",
+  "description": "react learning",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajaydewangan1100/React_using_CDN_only.git"
+  },
+  "author": "Ajay Dew",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajaydewangan1100/React_using_CDN_only/issues"
+  },
+  "homepage": "https://github.com/ajaydewangan1100/React_using_CDN_only#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}
