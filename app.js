@@ -1,3 +1,8 @@
+// Importing react
+import React from "react";
+// Importing react-dom
+import ReactDOM from "react-dom/client";
+
 // Getting root
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
