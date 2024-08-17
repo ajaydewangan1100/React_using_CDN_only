@@ -1,6 +1,6 @@
 ## REACT
 
-#### What i studied till now
+### What i studied till now
 
  - Hello world
  - hello world - using JS
@@ -29,6 +29,13 @@
   - On `root.render` it is replacing all the previous texts or child of root
   - We can use react just in small portion of our app (like header or footer or even card) 
 
+### Extensions for VSCode -
+ 
+- Prettier
+- Bracket Pair Colorization Toggler
+- ESLint
+- Better Comments
+  
 ### NPM
 
 *npm not stands for Node Package Manager*
@@ -168,9 +175,9 @@ Error: Expected content key de1e4a02ec63c4eb to exist
 
 *This warning is because I need to import `ReactDOM` from `react-dom/client`* -> (`import ReactDOM from "react-dom/client";`)
 
-### What parcel doing -
+### What parcel doing - 
+(Zero config tool)
 
-- Zero config tool
 - Dev build
 - Creating local server
 - HMR - Hot Module Replacement (for refreeshing the web page)
@@ -194,6 +201,7 @@ Error: Expected content key de1e4a02ec63c4eb to exist
 - Now I done Production build with parcel using CMD - `npx parcel build index.html`
   
 This commnad gives an error -
+
 ![Error_Parcel_production_build](Learning_related_media/Error_Parcel_production_build.png)
 
 **Solution** - Removed `"main": "app.js",` this line from `package.json`
@@ -201,7 +209,9 @@ This commnad gives an error -
 
 - Now i run CMD - `npx parcel build index.html`
 It created 3 major files under dist folder, (we can see) -
+
 ![Parcel_prod_build_files](Learning_related_media/Parcel_prod_build_files.png)
+
 (*Our all project written codes contains by this files*, I can open ansd see that)
 
 - We can give browsers list on `package.json` so our application will definitely work for that browsers
@@ -228,3 +238,61 @@ for that we can use this browsers list *website* - [https://browserslist.dev/](h
   "parcel": "rm -rf .parcel-cache && parcel index.html"
 }
 ```
+
+### Starting React Things - FOUNDATION
+
+- I am removing all `app.js` code, currently `app.js` looking like this -
+  
+```
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const parent = React.createElement(
+  "div",
+  { id: "parent" },
+  React.createElement("div", { id: "child" }, [
+    React.createElement("h1", {}, "parent -> child > h1 -> I am h1"),
+    React.createElement("h2", {}, "parent -> child > h1 -> I am h2"),
+  ])
+);
+
+root.render(parent);
+
+```
+
+- **Starting from Scratch** -
+- We already know - `React.createElement => object => html element(rendered)`
+  
+- **JSX** - (JSX is *not* part of react, Both are separate things)
+  - jsx make our life easy
+  - JSX is not HTML in JavaScript
+  - JSX is HTML like syntax
+  - Looks like HTML/XML
+  - IT is not pure javascript
+  - JS engine does not understand JSX
+   (To see it, we can run these line on console - `const jsxHeading = <h1 id="xyz">Heading using JSX</h1>;`)
+   (It gives syntax error)
+
+   ![ERROR - JSX_on_browser_console](Learning_related_media/JSX_on_browser_console.png)
+
+  - JSX transpiled before reaches JS engine (converted to code that react can understand)
+  - That transpilation done by **PARCEL** using **BABEL**
+
+**BABEL** is a JS compiler /transpiler, 
+
+  - (*BABEL*'s work is to convert `JSX` to `Javascript`)
+
+  - ( **NOTE** - *BABEL is not written by Facebook developers*)
+
+  - Website - [https://babeljs.io/](https://babeljs.io/)
+  
+  - BABEL is responsible for converting `JSX element` in `React Element`
+  
+  - (**SO** -> `JSX ELement => Babel transpiles it to React.createElement => object (ReactELement-JS)  => html element (rendered)`)
+
+  - (**Note** - We need to use camelCase for JSX attributes);
+  - (*Use brackets to write JSX of multiline* - `( <h1> Multiline JSX here </h1> )`)
+
+  

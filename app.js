@@ -1,26 +1,16 @@
-// Importing react
 import React from "react";
-// Importing react-dom
 import ReactDOM from "react-dom/client";
 
-// Getting root
+// React.createElement => object => HTML element(rendred)
+
+// Old React Syntax to create element -
+const heading = React.createElement("h1", { id: "abc" }, "Heading 1");
+
+// New React Syntax to create element with JSX -
+const jsxHeading = <h1 id="xyz">Heading using JSX</h1>;
+
+console.log(jsxHeading);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// creating element
-// const heading = React.createElement("h1", {id:"heading", xxx:"aaa"}, "MSG From React!");
-
-// console.log(heading);
-// root.render(heading);
-
-// Nested element structure
-const parent = React.createElement(
-  "div",
-  { id: "parent" },
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "parent -> child > h1 -> I am h1"),
-    React.createElement("h2", {}, "parent -> child > h1 -> I am h2"),
-  ])
-);
-
-// rendering element
-root.render(parent);
+root.render(jsxHeading);
