@@ -295,4 +295,65 @@ root.render(parent);
   - (**Note** - We need to use camelCase for JSX attributes);
   - (*Use brackets to write JSX of multiline* - `( <h1> Multiline JSX here </h1> )`)
 
+### React Component -
+
+- Everything in React is component
+- 2 Types 
+  - Class based component - OLD
+  - function component - NEW
   
+**function component** 
+
+(*Normal JS function, which returns some JSX or React Element*)
+
+```
+<!-- Syntax 1 -->
+const FunCompHeading = () => {
+  return <h1>Heading - using Function Component</h1>;
+};
+
+<!-- Syntax 2 (without return keyword) -->
+const FunCompHeading = () => <h1>Heading - using Function Component</h1>;
+```
+
+- Let's create and render functional component - 
+
+```
+const FunCompHeading = () => {
+  return <h1>Heading - using Function Component</h1>;
+};
+
+console.log(jsxHeading);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(<FunCompHeading />);
+```
+
+- **Component compositoin or Nested component** -
+
+```
+const FuncHeading = () => <h1 id="xyz">This is Component compositoin</h1>;
+
+const FunCompHeading = () => {
+  return (
+    <div>
+      <FuncHeading />
+      <h1>Heading - using Function Component</h1>
+    </div>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<FunCompHeading />);
+```
+
+- **Ways to render a component** -
+  
+  - `<FuncHeading />`
+  - `<FuncHeading></FuncHeading>`
+  - `{FuncHeading()}`
+
+
+
+
