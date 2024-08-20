@@ -355,5 +355,15 @@ root.render(<FunCompHeading />);
   - `{FuncHeading()}`
 
 
+### Started Food Ordering App
 
+- AppLayout component created
+- Header component created
+- Body component created
+
+#### Config driven UI (used by swiggy)
+ - Constrolling the UI using DATA(config) 
+ - config comes from backend
+ - Latest practice following by multiple big companies
+ - 
 
