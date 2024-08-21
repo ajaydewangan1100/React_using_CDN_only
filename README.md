@@ -365,5 +365,45 @@ root.render(<FunCompHeading />);
  - Constrolling the UI using DATA(config) 
  - config comes from backend
  - Latest practice following by multiple big companies
- - 
+  
+
+### Project Cleanup
+
+- Updated Restaurant Card with loop
+- Created different components
+- Creating components with `.js` extension
+- importing components without extension - `import Header from "./components/Header";`
+- Never keep **hard coded data under component file**
+  - So creatred a `utils folder`, under that created a `constant.js` file for separating data 
+  - separated *DUMMY JSON DATA* - 
+  - and also links used for image or CDN images
+
+### React Hooks start
+
+- Normal JavaScript Utility Functions
+- Written by Facebook Developers
+  
+#### useState Hook - 
+
+Creates Superpowerful state variables 
+
+- Scope inside component in which the state created
+
+
+#### React Features
+
+**Reconciliation Algorithm (React Fiber)** 
+
+**Virtual DOM**
+
+- Object representation of Actual DOM
+- Normal JS Object
+- can see that using - `console.log(<Header />)`
+
+**Diff Algorithm**
+
+- Tries to find difference between old virtual DOM and new virtual DOM
+- Then it will update actual DOM with new virtual DOM 
+- 
+
 
