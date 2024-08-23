@@ -304,49 +304,49 @@ root.render(parent);
   
 **function component** 
 
-(*Normal JS function, which returns some JSX or React Element*)
+  (*Normal JS function, which returns some JSX or React Element*)
 
-```
-<!-- Syntax 1 -->
-const FunCompHeading = () => {
-  return <h1>Heading - using Function Component</h1>;
-};
+    ```
+      <!-- Syntax 1 -->
+      const FunCompHeading = () => {
+        return <h1>Heading - using Function Component</h1>;
+      };
 
-<!-- Syntax 2 (without return keyword) -->
-const FunCompHeading = () => <h1>Heading - using Function Component</h1>;
-```
+      <!-- Syntax 2 (without return keyword) -->
+      const FunCompHeading = () => <h1>Heading - using Function Component</h1>;
+    ```
 
-- Let's create and render functional component - 
+  - Let's create and render functional component - 
 
-```
-const FunCompHeading = () => {
-  return <h1>Heading - using Function Component</h1>;
-};
+    ```
+    const FunCompHeading = () => {
+      return <h1>Heading - using Function Component</h1>;
+    };
 
-console.log(jsxHeading);
+    console.log(jsxHeading);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+    const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<FunCompHeading />);
-```
+    root.render(<FunCompHeading />);
+    ```
 
 - **Component compositoin or Nested component** -
 
-```
-const FuncHeading = () => <h1 id="xyz">This is Component compositoin</h1>;
+  ```
+  const FuncHeading = () => <h1 id="xyz">This is Component compositoin</h1>;
 
-const FunCompHeading = () => {
-  return (
-    <div>
-      <FuncHeading />
-      <h1>Heading - using Function Component</h1>
-    </div>
-  );
-};
+  const FunCompHeading = () => {
+    return (
+      <div>
+        <FuncHeading />
+        <h1>Heading - using Function Component</h1>
+      </div>
+    );
+  };
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<FunCompHeading />);
-```
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<FunCompHeading />);
+  ```
 
 - **Ways to render a component** -
   
@@ -361,7 +361,7 @@ root.render(<FunCompHeading />);
 - Header component created
 - Body component created
 
-#### Config driven UI (used by swiggy)
+### Config driven UI (used by swiggy)
  - Constrolling the UI using DATA(config) 
  - config comes from backend
  - Latest practice following by multiple big companies
@@ -369,66 +369,66 @@ root.render(<FunCompHeading />);
 
 ### Project Cleanup
 
-- Updated Restaurant Card with loop
-- Created different components
-- Creating components with `.js` extension
-- importing components without extension - `import Header from "./components/Header";`
-- Never keep **hard coded data under component file**
+  - Updated Restaurant Card with loop
+  - Created different components
+  - Creating components with `.js` extension
+  - importing components without extension - `import Header from "./components/Header";`
+  - Never keep **hard coded data under component file**
   - So creatred a `utils folder`, under that created a `constant.js` file for separating data 
   - separated *DUMMY JSON DATA* - 
   - and also links used for image or CDN images
 
 ### React Hooks start
 
-- Normal JavaScript Utility Functions
-- Written by Facebook Developers
-  
-#### useState Hook - 
+  - Normal JavaScript Utility Functions
+  - Written by Facebook Developers
+    
+  #### useState Hook - 
 
-Creates Superpowerful state variables 
+    Creates Superpowerful state variables 
 
-- Scope inside component in which the state created
-- *Note* - Never create state variables outside of the component
-- Always put state variables on top of the component, (good practice) and React also understand because it's consistency
-- Never create state varible inside conditional (if else)
-- or inside loop
-- or function 
+    - Scope inside component in which the state created
+    - *Note* - Never create state variables outside of the component
+    - Always put state variables on top of the component, (good practice) and React also understand because it's consistency
+    - Never create state varible inside conditional (if else)
+    - or inside loop
+    - or function 
 
 
 **React Features**
 
-**Reconciliation Algorithm (React Fiber)** 
+  **Reconciliation Algorithm (React Fiber)** 
 
-**Virtual DOM**
+    **Virtual DOM**
 
-  - Object representation of Actual DOM
-  - Normal JS Object
-  - can see that using - `console.log(<Header />)`
+      - Object representation of Actual DOM
+      - Normal JS Object
+      - can see that using - `console.log(<Header />)`
 
-**Diff Algorithm**
+    **Diff Algorithm**
 
-  - Tries to find difference between old virtual DOM and new virtual DOM
-  - Then it will update actual DOM with new virtual DOM 
-  
+      - Tries to find difference between old virtual DOM and new virtual DOM
+      - Then it will update actual DOM with new virtual DOM 
+    
 
 **Different terms used in world**
 
-**Monolith Architecture**
+  **Monolith Architecture**
 
-  - All Services and features created under single project
-  - Like - backend, UI, Auth, Email etc
-  - If single feature needs update, then need to push whole project again along with all features and services
-  - So it's too bulky
+    - All Services and features created under single project
+    - Like - backend, UI, Auth, Email etc
+    - If single feature needs update, then need to push whole project again along with all features and services
+    - So it's too bulky
 
-**Microservices**
+  **Microservices**
 
-  - Different services for different features
-  - Together forms big app
-  - Each and small thing it ca have different projects
-  - **This is known as separation of concerns**
-  - We can have different tech stack for different features/services
-  - All services run their own specific PORT
-  - All PORTS map to Domain Name
+    - Different services for different features
+    - Together forms big app
+    - Each and small thing it ca have different projects
+    - **This is known as separation of concerns**
+    - We can have different tech stack for different features/services
+    - All services run their own specific PORT
+    - All PORTS map to Domain Name
 
 **2 Approaches to fetch DATA from backend**
 
@@ -486,7 +486,7 @@ Creates Superpowerful state variables
 
 **Optional Chaining** 
 
-- I have used for extracting exact data i want - `data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants`
+  - I have used for extracting exact data i want - `data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants`
 
 **Loader**
 
@@ -507,20 +507,206 @@ Creates Superpowerful state variables
     }
   ```
 
-(**Above condition is also known as `Conditional Rendering`**)
+  (**Above condition is also known as `Conditional Rendering`**)
 
-- We can also write it using `turnery operator `
+  - We can also write it using `turnery operator `
 
-  ```
-  return restaurantList.length === 0 ? (
-      <Shimmer />
-    ) : ()
-  ```
+    ```
+    return restaurantList.length === 0 ? (
+        <Shimmer />
+      ) : ()
+    ```
 
-- I have created a search input, binded with state varible
+  - I have created a search input, binded with state varible
 
-**NOTE** `Whenever state variable updates, REACT triggers a reconciliation cycle (re-renders) of that component where the state variable present`
+  **NOTE** `Whenever state variable updates, REACT triggers a reconciliation cycle (re-renders) of that component where the state variable present`
 
 
 **Multiple Pages on my project**
+
+### React Router
+
+- *Website*- [React Router](https://reactrouter.com/en/main)
+- I will use latest version - which is `6.4` at that time
+- Intalled - npm i react-router-dom
+
+- **Routing configuration** 
+
+    *Navigation between pages*
+
+- **createBrowserRouter** 
+  - `import { createBrowserRouter } from "react-router-dom"`
+  - it takes a list of routes/path (basically objects)
+
+  ```
+    const appRouter = createBrowserRouter([
+    {
+      path: "/",
+      element: <AppLayout />,
+    },
+    {
+      path: "/about",
+      element: <About />,
+    },
+  ]);
+  ```
+  
+  - Now I created a configuration,
+  - But I also need to provide it to render it
+  - for that we need - **RouterProvider**
+
+- **RouterProvider**
+
+ - Import - 
+ - `import { createBrowserRouter, RouterProvider } from "react-router-dom";`
+ - How to provide -
+ - `root.render(<RouterProvider router={appRouter} />);`
+
+- **Creating my own error page**
+
+  ```
+    const Error = () => {
+      return (
+        <div>
+          <h1>OOP's</h1>
+          <h2>Something went wrong</h2>
+        </div>
+      );
+    };
+
+    export default Error;
+  ```
+
+- and adding it to the router configuration
+
+  ```
+    {
+      path: "/",
+      element: <AppLayout />,
+      errorElement: <Error />,
+    },
+  ```
+
+- Added here for `AppLayout component`
+
+- **NOTE** - React Router Dom gives us access to important *hook* on *Error cases* 
+
+- **useRouteError** 
+- Using the hook we can give more details and bettor error
+- Import - `import { useRouteError } from "react-router-dom";`
+- Call - `const err = useRouteError();`
+
+  ```
+    import { useRouteError } from "react-router-dom";
+
+    const Error = () => {
+      const err = useRouteError();
+    //   console.log(err);
+
+      return (
+        <div>
+          <h1>OOP's</h1>
+          <h2>Something went wrong</h2>
+          <h3>
+            {err.status}: {err.statusText}
+          </h3>
+        </div>
+      );
+    };
+
+    export default Error;
+  ```
+
+
+  - **Childern routes**
+   - Now i have a problem, when I am going to contact Us page or About Us page my header I need to show
+   - For that I can give childrens as a list of objects contains components, 
+   - which we want to render as child
+   - So I have to change things 
+  
+    - Import `Outlet` component from `react router dom` 
+    - `import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";`
+    - *Outlet is like a presentator for different childs, it can render childs based on path*
+    - *It replaces itself by child component*
+  
+    - *Router configuration updated*
+
+    ```
+      const appRouter = createBrowserRouter([
+        {
+          path: "/",
+          element: <AppLayout />,
+          errorElement: <Error />,
+          children: [
+            { path: "/", exact: true, element: <Body /> },
+            {
+              path: "/about",
+              element: <About />,
+            },
+            {
+              path: "/contact",
+              element: <Contact />,
+            },
+          ],
+        },
+      ]);
+    ```
+
+    - See `AppLayout` - 
+
+    ```
+      const AppLayout = () => {
+        return (
+          <div className="app">
+            <Header />
+            <Outlet />
+          </div>
+        );
+      };
+    ```
+
+
+  - **Creating links**
+    - We need to navigate between pages by clicking on navigation links
+    - We have nav links under `Header` component
+    - In React we can't use <a> *Acnhor tag*
+    - Beacuse it reloads the page
+    - We need to navigate to new page without reloading the whole page
+      
+  - **Link** 
+    - import - `import { Link } from "react-router-dom";`
+    - USE - `<Link to="/about">About US</Link>`
+    - 
+
+  - **@ Tyoes of routing in web apps**
+    1. Client Side Routing
+      - I have created cliend side routing on my application
+      - Because nothing is fetched when clicking on the navigation links
+      - So we can call it SPA (Single Page Application) also
+    2. Server Side Routing
+      - On click of nacigation links it creates a network call to download the page 
+      - and page comes from server then it renders that page
+  
+  - **Creating Dynamic pages**
+    - Now i want to create dynamic page based on the restaurant menu
+    - When I will click any restaurant it will show its full details on the new page
+    - For that I am creating a new path - 
+
+    ```
+      {
+        path: "/restaurants/:resId",
+        element: <ReastaurantMenu />,
+      }
+    ```
+
+  - Dynamic Menu page created
+  - But only 1 restaurant menu is coming because API is hardcoded
+  - 
+
+
+
+
+
+
+
 
