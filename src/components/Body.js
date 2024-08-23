@@ -1,14 +1,62 @@
 import RestrourantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { SWIGGY_API } from "../utils/constants";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
-  const [restaurantList, setRestaurantList] = useState(resList);
+  const [restaurantList, setRestaurantList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
 
-  return (
+  const [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const josnData = await fetch(SWIGGY_API);
+    const { data } = await josnData.json();
+
+    setRestaurantList(
+      data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    // console.log(restaurantList);
+    setFilteredList(
+      data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
+
+  // if (restaurantList.length === 0) {
+  //   return <Shimmer />;
+  // }
+
+  return restaurantList.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       {/* <div className="search-container">search</div> */}
       <div className="filter">
+        <div className="search-container">
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search here..."
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <button
+            className=""
+            onClick={() => {
+              const filtered = restaurantList.filter((res) =>
+                res.info.name
+                  .toLowerCase()
+                  .includes(searchText.toLocaleLowerCase())
+              );
+              setFilteredList(filtered);
+            }}>
+            Search
+          </button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
@@ -21,7 +69,7 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {restaurantList.map((c_data, index) => (
+        {filteredList.map((c_data, index) => (
           <RestrourantCard key={c_data.info.id} resData={c_data} />
         ))}
       </div>

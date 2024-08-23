@@ -388,22 +388,139 @@ root.render(<FunCompHeading />);
 Creates Superpowerful state variables 
 
 - Scope inside component in which the state created
+- *Note* - Never create state variables outside of the component
+- Always put state variables on top of the component, (good practice) and React also understand because it's consistency
+- Never create state varible inside conditional (if else)
+- or inside loop
+- or function 
 
 
-#### React Features
+**React Features**
 
 **Reconciliation Algorithm (React Fiber)** 
 
 **Virtual DOM**
 
-- Object representation of Actual DOM
-- Normal JS Object
-- can see that using - `console.log(<Header />)`
+  - Object representation of Actual DOM
+  - Normal JS Object
+  - can see that using - `console.log(<Header />)`
 
 **Diff Algorithm**
 
-- Tries to find difference between old virtual DOM and new virtual DOM
-- Then it will update actual DOM with new virtual DOM 
-- 
+  - Tries to find difference between old virtual DOM and new virtual DOM
+  - Then it will update actual DOM with new virtual DOM 
+  
 
+**Different terms used in world**
+
+**Monolith Architecture**
+
+  - All Services and features created under single project
+  - Like - backend, UI, Auth, Email etc
+  - If single feature needs update, then need to push whole project again along with all features and services
+  - So it's too bulky
+
+**Microservices**
+
+  - Different services for different features
+  - Together forms big app
+  - Each and small thing it ca have different projects
+  - **This is known as separation of concerns**
+  - We can have different tech stack for different features/services
+  - All services run their own specific PORT
+  - All PORTS map to Domain Name
+
+**2 Approaches to fetch DATA from backend**
+
+  1. As soon as page load fetch the data, when we get data then render it on UI
+  2. As soon as page load render the UI, now fetch data and after data come re-render UI with data
+     
+  In REACT always have to use 2nd approach
+  (Because 2nd is better approach and gives better UX)
+
+#### useEffect Hook -
+
+   - Comes from REACT library
+   - syntax - useEffect(() => {}, []) 
+   - arguments to pass - (callback function and dependencies array)
+   - This call function is called after component is loaded or rendered
+
+   - I am trying ot fetch swiggy data from Swiggy API, using useEffect
+     
+   ```
+   useEffect(() => {
+     fetchData();
+   });
+
+   const fetchData = async () => {
+     const data = await fetch(SWIGGY_API);
+     const jsonData = await data.json();
+     console.log(jsonData);
+   };
+   ```
+   - But i am getting CORS error 
+   - when is this `useEffect` call
+   - **`useEffect` will be called every time component will be rendered**
+  
+  **Conditions based on dependency array**
+   - If no dependency array - `useEffect` will be called on **every render**
+   - if empty dependency array `[]` - `useEffect` is called on initial render **just once**
+   - if dependency array contains state variable `[searchText]` - `useEffect` will be called every time when **state variable's** values changes
+
+
+**CORS**
+     
+  ![CORS Error](Learning_related_media/CORS_Error.png)
+
+   - because my browser is blocking to access API from localhost (form one origin to another)
+   - When origin mismatch browser blocks that API call
+   - That is a CORS policy
+   - Bypass the CORS
+
+   - Intall CORS extension and enable it
+
+   ![CORS Extesnion](Learning_related_media/CORS_Extension.png)
+
+   - if we don't want to use the CORS extension
+   - we can goto - []()
+
+**Optional Chaining** 
+
+- I have used for extracting exact data i want - `data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants`
+
+**Loader**
+
+  - I am able to see white section before fetching done by API
+  - So I want to show a Loader instead
+  - But showing loader is not good practice and also not industry practice
+  - So I will use **Shimmer UI**
+  
+**Shimmer UI** 
+
+  - `Shimmer is a temporary animation placeholder for when data from the service call takes time to get back and we don't want to block rendering the rest of the UI`.
+  - For that i have created a `Shimmer.js` and created a skeleton
+  - given a condition under `Body.js`
+  
+  ```
+    if (restaurantList.length === 0) {
+      return <Shimmer />;
+    }
+  ```
+
+(**Above condition is also known as `Conditional Rendering`**)
+
+- We can also write it using `turnery operator `
+
+  ```
+  return restaurantList.length === 0 ? (
+      <Shimmer />
+    ) : ()
+  ```
+
+- I have created a search input, binded with state varible
+
+**NOTE** `Whenever state variable updates, REACT triggers a reconciliation cycle (re-renders) of that component where the state variable present`
+
+
+**Multiple Pages on my project**
 
