@@ -669,7 +669,7 @@ root.render(parent);
   - **Creating links**
     - We need to navigate between pages by clicking on navigation links
     - We have nav links under `Header` component
-    - In React we can't use <a> *Acnhor tag*
+    - In React we can't use `<a>` *Acnhor tag*
     - Beacuse it reloads the page
     - We need to navigate to new page without reloading the whole page
       
@@ -701,12 +701,57 @@ root.render(parent);
 
   - Dynamic Menu page created
   - But only 1 restaurant menu is coming because API is hardcoded
-  - 
+   
+  - **useParams**
+    - To get things which sent in URLs
+    - import - `import { useParams } from "react-router-dom";`
+    - USE - `const params = useParams();`
+    - It returns an object with params keys present on URL
+     
+    - ![Params from useParams printed](Learning_related_media/Params_log.png)
+    
+    - constant variable - `constant.js`
+     
+      ```
+        export const RES_MENU_FETCH_API = [
+          "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5204303&lng=73.8567437&restaurantId=",
+          "&catalog_qa=undefined&submitAction=ENTER",
+        ];
+      ```
 
+    - `RestaurantMenu.js` -
 
+      ```
+      const data = await fetch(
+        RES_MENU_FETCH_API[0] + params.resId + RES_MENU_FETCH_API[1]
+      );
+      ```
+    
+    - **Create clickable Restaurant cards**
+      - So we can click on card and go to its info page
+      - And can get `id` dynamically for that restaurant
+      - Using that `id` only I need to get that restaurant info
+      - And that `id` I will get from URL using useParams 
 
+      - Using `Link` tag I have done - 
+        ```
+          <Link key={c_data.info.id} to={"/restaurant/" + c_data.info.id}>
+            <RestrourantCard resData={c_data} />
+          </Link>
+        ```
 
+      - How I am passing id, we can see - `to={"/restaurant/" + c_data.info.id}`
 
+      - I have to use this logic for get list of restaurants
+
+        ```
+          let [FIND] =
+          resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+            (crd) => crd.card.card.title === "Recommended"
+          );
+
+        const itemCards = FIND && FIND.card?.card.itemCards;
+        ```
 
 
 
