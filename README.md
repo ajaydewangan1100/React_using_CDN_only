@@ -753,5 +753,130 @@ root.render(parent);
         const itemCards = FIND && FIND.card?.card.itemCards;
         ```
 
+### Class Components
 
+  - Most of the time interviewer will ask Class Components, so we need to learn it
+  
+  - I'ill utilize `About Us` page for that 
+  - I will add information of some persons 
+  - Its a normal Javascript Class
+  - Which we will use for create a component
+  - **Syntax**
+    - `class <NameOfComponent> extends React.component{}`
+    -  class must have a render Method, which will be called
+    -  And that render method will return some JSX things.
 
+    ```
+      class UserClass extends React.Component {
+        render() {
+          return (
+            <div className="user-card">
+              <h2>NAme: Ajay</h2>
+              <h3>Location : Pune</h3>
+              <h4>Contact : @ajaydewangan1100</h4>
+            </div>
+          );
+        }
+      }
+
+      export default UserClass;
+    ```
+
+    - Now I need to pass `props`, which i can do same like functional comp
+    - `<UserClass name={"Ajay (fucntion)"} />`
+    - But receiving arguments is different from functional component
+    - I need to use `cunstructor method` for recieve the `props`
+    - Under that `cunstructor method`, we need to use `super method`
+
+     ```
+      constructor(props) {
+        super(props);
+
+        console.log(props);
+      }
+    ```
+
+    - **State Varible Under Class component**
+    - **Note** when we `Class component` renders it creates an instance of the class,
+    - so it calls constructor, and basically that time it takes parameters
+    - So under cunstructor method it is best place to create state also,
+    - But we can't use `useState` for state variable, 
+    - as we know hooks works with components only, outside component it won't work,
+    - and hooks came with functional components 
+    - before that there is different method to create state under `Class Component`
+
+      ```
+        constructor(props) {
+          super(props);
+          // console.log(props);
+          this.state = {
+            count: 0,
+            count2: 2,
+          };
+        }
+      ```
+    - *use of the state variable* -
+    
+      ```
+        <h1>Count : {this.state.count}</h1>
+        <h1>Count2 : {this.state.count2}</h1>
+      ```
+
+    - *Updating the state variable* - `Inside Class Component`
+      
+      ```
+        onClick={() => {
+            this.setState({
+              count: this.state.count + 1,
+              count2: this.state.count2 + 2
+            })
+          }}
+      ```
+
+  - **Component Lifecycle Method**
+
+  - Loading/Mounting - same
+  - Whenever Class component is instantiated cunstrutor method called 
+  - Then render method is called
+  - How lifecycle method is called - `Cunstructor() > Render() > componentDidMount()`
+  - `componentDidMount()` - Used to make API call
+    
+
+    ```
+      - Parent - Cunstructor method
+      - parent - Render method
+
+        - 1st child - Cunstructor method
+        - 1st child - Render method
+
+        - 2nd child - Cunstructor method
+        - 2nd child - Render method  
+
+        <DOM updated - in single batch>
+
+        - 1st child - ComponentDidMount
+        - 2nd child - ComponentDidMount
+
+      - Parent - ComponentDidMount
+    ```
+
+  - DOM manipulation is very expensive thing so React first render then do DOM manipulation in commit phase
+
+    ![React_component_cycle_img_from_doc](Learning_related_media/React_component_cycle_img_from_doc.png)
+
+  - Follow this website explaination for Lifecycle Method 
+    - [https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+  
+  - React tries to batch childs DOM and ComponentDidMount(),
+  - that's one reason React is Fast
+
+  - Output on console
+   
+    ![React Component Life cycle](Learning_related_media/React_Component_Life_cycle.png)
+
+  
+  
+  - I have created a video how Lifecycle Method works on my this project, 
+  - and attached here as zip, so i can see in fufure
+  
+    [React Component Life Cycle Explained in video - zip file](<Learning_related_media/React Component Life Cycle Explained in video.zip>)

@@ -114,3 +114,8 @@ margin: 40px auto;
    background-color: cornflowerblue;
    color: white;
  }
+
+ .user-card {
+   padding: 10px;
+   border: 1px solid black;
+ }
