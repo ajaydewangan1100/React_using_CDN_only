@@ -835,11 +835,11 @@ root.render(parent);
 
   - **Component Lifecycle Method**
 
-  - Loading/Mounting - same
-  - Whenever Class component is instantiated cunstrutor method called 
-  - Then render method is called
-  - How lifecycle method is called - `Cunstructor() > Render() > componentDidMount()`
-  - `componentDidMount()` - Used to make API call
+    - Loading/Mounting - same
+    - Whenever Class component is instantiated cunstrutor method called 
+    - Then render method is called
+    - How lifecycle method is called - `Cunstructor() > Render() > componentDidMount()`
+    - `componentDidMount()` - Used to make API call
     
 
     ```
@@ -860,23 +860,66 @@ root.render(parent);
       - Parent - ComponentDidMount
     ```
 
-  - DOM manipulation is very expensive thing so React first render then do DOM manipulation in commit phase
+    - DOM manipulation is very expensive thing so React first render then do DOM manipulation in commit phase
 
-    ![React_component_cycle_img_from_doc](Learning_related_media/React_component_cycle_img_from_doc.png)
+      ![React_component_cycle_img_from_doc](Learning_related_media/React_component_cycle_img_from_doc.png)
 
-  - Follow this website explaination for Lifecycle Method 
-    - [https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
-  
-  - React tries to batch childs DOM and ComponentDidMount(),
-  - that's one reason React is Fast
+    - Follow this website explaination for Lifecycle Method 
+      - [https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+    
+    - React tries to batch childs DOM and ComponentDidMount(),
+    - that's one reason React is Fast
 
-  - Output on console
-   
-    ![React Component Life cycle](Learning_related_media/React_Component_Life_cycle.png)
+    - Output on console
+     
+      ![React Component Life cycle](Learning_related_media/React_Component_Life_cycle.png)
 
-  
-  
-  - I have created a video how Lifecycle Method works on my this project, 
-  - and attached here as zip, so i can see in fufure
+    
+    
+    - I have created a video how Lifecycle Method works on my this project, 
+    - and attached here as zip, so i can see in fufure
   
     [React Component Life Cycle Explained in video - zip file](<Learning_related_media/React Component Life Cycle Explained in video.zip>)
+
+    **API call under Class Component**
+
+    - I will use `github ` Api to fetch github users details to show on my About Us page
+    - We already know that we can do API things under `componentDidMount method`
+    - So for that we can make it async like - `async componentDidMount(){..}`
+    - And then ani async things we can do directly under `componentDidMount()`
+    - and we need to store the received data on state,
+    
+      ```
+        async componentDidMount() {
+          // console.log(this.props.name + " componentDidMount");
+
+          const data = await fetch("https://api.github.com/users/ajaydewangan1100");
+          const jsonData = await data.json();
+
+          this.setState({ userInfo: jsonData });
+        }
+      ```
+
+    - **Cycles**
+
+      1. **Mounting** - See the image above 
+      2. **Updating** 
+        - when new props, state changes again component renders, and DOM updates
+        - `ComponentDidUpdate()` method runs
+        - 
+      3. **Unmounting** 
+        - When we leave that page, or we will go to other page component will unmmount
+        - and `componentWillUnmount()` method will be called
+      
+      ![Component_all_cycle](Learning_related_media/Component_all_cycle.png)
+
+
+
+
+
+
+
+
+
+
+

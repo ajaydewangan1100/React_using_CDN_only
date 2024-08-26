@@ -6,8 +6,10 @@ class UserClass extends React.Component {
     super(props);
     // console.log(props);
     this.state = {
-      count: 0,
-      count2: 2,
+      userInfo: {
+        name: "DUMMY",
+        location: "Default",
+      },
     };
 
     console.log(this.props.name + " Cunstrctor");
@@ -15,31 +17,37 @@ class UserClass extends React.Component {
 
   // ComponentDidMount()
 
-  componentDidMount() {
+  async componentDidMount() {
     console.log(this.props.name + " componentDidMount");
+
+    const data = await fetch("https://api.github.com/users/ajaydewangan1100");
+    const jsonData = await data.json();
+
+    console.log(jsonData);
+    this.setState({ userInfo: jsonData });
+  }
+
+  componentDidUpdate() {
+    console.log(this.props.name + " - ComponentDidUpdate");
+  }
+
+  componentWillUnmount() {
+    console.log(this.props.name + " - componentWillUnmount");
   }
 
   render() {
     console.log(this.props.name + " render");
+    const { name, location, avatar_url } = this.state.userInfo;
 
     // destrured props
-    const { name, location, contact } = this.props;
+    // const { name, location, contact } = this.props;
 
     return (
       <div className="user-card">
-        {/* printing state data here */}
-        <h1>Count2 : {this.state.count2}</h1>
-        <button
-          onClick={() => {
-            this.setState({ count2: this.state.count2 + 2 });
-          }}>
-          Count Increase
-        </button>
-
-        {/* Printing props data here */}
+        <img src={avatar_url} alt={name} className="github-avtar" />
         <h2>Name: {name}</h2>
-        <h3>Location : {location}</h3>
-        <h4>Contact : {contact}</h4>
+        <h3>Location : {location ? location : "India"}</h3>
+        <h4>Contact : {"contact"}</h4>
       </div>
     );
   }

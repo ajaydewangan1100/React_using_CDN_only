@@ -61,11 +61,11 @@ class AboutComponent extends Component {
           location={"Pune"}
           contact={"@ajaydewangan1100"}
         />
-        <UserClass
+        {/* <UserClass
           name={"2nd "}
           location={"Pune"}
           contact={"@ajaydewangan1100"}
-        />
+        /> */}
       </div>
     );
   }
