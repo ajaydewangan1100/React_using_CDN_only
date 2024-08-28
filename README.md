@@ -985,6 +985,79 @@ root.render(parent);
 
       - I have used it under `Body.js` and `Header.js`
 
+### Optimizing Application 
 
+  - Differnt names for same thing -
 
+    - **Chunking**, **Code Splitting**, **Dynamic Bundling**, **Dynamic import**, **Lazy Loading**, **On Demand Loading** 
+    
+  - **Lazy Loading**, **On Demand Loading** - Load when page neeeds that(when user switching to it) (So we can call it Lazy Loading also)
+    - For that we can't import component directly by import 
+    - we need to load our component using `lazy()` method
+    - `Lazy()` comes from react - `import {lazy } from react`
+    - It takes a callback function - `lazy(() => import)`
+    - We need to give a *import*, whihc is an function - `import()`
+    - And we need to pass that `import()` path of the component, 
+    - So it will look like this - 
 
+      ```
+        const Grocery = lazy(() => import("./components/Grocery"));
+      ``` 
+      
+  
+    - Now I am going for Optimize the application using **Chunking** or **Code Splitting** can tell any name,
+    - For that I am creating new components and later I will bundle that components differently 
+
+    - So creating a different path also for Grocery - under `app.js`
+      ```
+        {
+          path: "/grocery",
+          element: <Grocery />,
+        }
+      ```
+
+    - And giving a link for grocery page under `header.js`
+      ```
+        <li>
+          <Link to="/grocery">Grocery</Link>
+        </li>>
+      ```
+
+    - When I am trying to change my page to *grocery* by clicking on link under *header* It is giving error 
+    - This error is coming because it started downloadng files from server for *grocery compoents*,
+    - and before download completes, react goes to that path and render that page, 
+    - but becasue files are not downloaded yet and react is very fast on render, so it is showing error page - 
+
+      ![Error on grocery component without Suspense](Learning_related_media/Error_on_grocery_without_suspense.png)
+
+    - So for overcome that thing we can use `Suspense()` component,
+    - It comes from react - `import {Suspense} from react`
+    - We need to wrap the component under `<Suspense >...</Suspense>` because
+    - We need to give a placeholder before `GroceryComponent` loaded, that we can give as - 
+      
+      ```
+        {
+          path: "/grocery",
+          element: (
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <Grocery />
+            </Suspense>
+          ),
+        }
+      ```
+
+    - **fallback** takes any type of JSX, we can pass `<Shimmer />` also under it, it is just a placeholder,
+    - which react will use, before component loaded fully
+     
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   
