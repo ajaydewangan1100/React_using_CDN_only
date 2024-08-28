@@ -914,11 +914,76 @@ root.render(parent);
       ![Component_all_cycle](Learning_related_media/Component_all_cycle.png)
 
 
+### Custom Hooks  
 
+  - **React Hooks** - Specail JS function given by React
+  - **Hooks** - Normal utility functions
 
+  - **Single Responsibility Principal** - Method or function that is responsible for only one thing 
 
+  - **Modularity** - Breaks down the code into different modules,
+  - so that it will become more efficient, testable, maintainable and reusable,
 
+  - **Creating Custom Hooks and Optimization** -
+    - Currently on my project there is a component - `RestaurantMenu.js`
+    - which is doing 2 things - 
+      - First - Fetching Data from API
+      - Second - Displaying Restaurant card with data using received data
+    
+    - We want to abstarct the fetch things using a hook,
+    - And only want to use the data directly under `RestaurantMenu.js`
 
+    - We already know Hooks are *helper functions*, 
+    - so I will create *custom hooks* under *utils*
+
+    - So i created a new Hook - `useRestaurantMenu`, and abstarcted fetch things,
+    - and removed this code from `RestaurantMenu.js` component
+      
+      ```
+        useEffect(() => {
+          fetchMenu();
+        }, []);
+
+        const fetchMenu = async () => {
+          const data = await fetch(
+            RES_MENU_FETCH_API[0] + params.resId + RES_MENU_FETCH_API[1]
+          );
+          const jsonData = await data.json();
+          setResInfo(jsonData);
+        };
+      ```
+
+    - Instead of this i just wrote - `const resInfo = useRestaurantMenu(resId)`
+  
+    - Creating one another hook for users `online status` - **useOnlineStatus.js**
+      
+      - On this hook we just need to check online or offline and return a boolean value
+      - For that I will use an `EventListener` given by `window object and browser object`,
+
+      - Here is my code for the *Hook* - 
+        ```
+          import { useEffect, useState } from "react";
+
+          const useOnlineStatus = () => {
+            const [status, setStatus] = useState(true);
+
+            //   check if offline
+            useEffect(() => {
+              window.addEventListener("online", () => {
+                setStatus(true);
+              });
+              window.addEventListener("offline", () => {
+                setStatus(false);
+              });
+            }, []);
+
+            return status;
+          };
+
+          export default useOnlineStatus;
+        ```
+
+      - I have used it under `Body.js` and `Header.js`
 
 
 
