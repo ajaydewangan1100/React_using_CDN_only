@@ -12,14 +12,14 @@ const Header = () => {
   const isOnline = useOnlineStatus();
 
   return (
-    <div className="header">
+    <div className="flex items-center justify-between bg-yellow-300 shadow-md sticky top-0 bg-opacity-35 px-4 h-28">
       <div className="logo-container">
-        <img src={LOGO_URL} className="logo" />
+        <img src={LOGO_URL} className="w-32 h-[80%] rounded-md" />
       </div>
-      <div className="nav-items">
-        <ul>
+      <div className="p-4">
+        <ul className="flex m-4 items-center gap-6 p-4 ">
           <li>{isOnline ? "Online🟢😎" : "Offline🔴🥲"}</li>
-          <li>
+          <li className="">
             <Link to="/grocery">Grocery</Link>
           </li>
           <li>
@@ -34,7 +34,7 @@ const Header = () => {
           <li>Cart</li>
           <li>
             <button
-              className="Login-btn"
+              className="px-3 py-1 rounded-lg text-gray-200 bg-violet-600 hover:bg-violet-700"
               onClick={() => setIsLoggedIn(!isLoggedIn)}>
               {isLoggedIn ? "Logout " : "Login"}
             </button>

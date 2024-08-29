@@ -1,4 +1,9 @@
-#heading {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* #heading {
     background-color: red;
 }
 .header {
@@ -122,4 +127,4 @@ margin: 40px auto;
 
  .github-avtar {
    width: 100px;
- }
+ } */

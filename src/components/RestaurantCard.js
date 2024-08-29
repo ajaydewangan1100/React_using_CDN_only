@@ -11,17 +11,23 @@ const RestrourantCard = ({ resData }) => {
   } = resData?.info;
 
   return (
-    <div className="res-card">
+    <div className="w-56 pb-2 rounded-lg bg-gray-100 duration-150 hover:scale-105 flex flex-col items-center">
       <img
-        className="res-logo"
+        className="max-w-full h-[10%] rounded-t-lg object-contain"
         alt="res-logo"
         src={CDN_URL + cloudinaryImageId}
       />
-      <h3>{name}</h3>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>{avgRatingString}</h4>
-      <h4>{costForTwo}</h4>
-      <h4>{sla?.deliveryTime} minutes</h4>
+      <div className="flex flex-col p-2 gap-2 w-full  ">
+        <div className="flex justify-between ">
+          <p className="font-bold text-gray-800">{name}</p>
+          <h4 className="text-gray-300 h-min bg-green-700 rounded-sm w-min px-1">
+            {avgRatingString}*
+          </h4>
+        </div>
+        <h4 className="text-xs font-semibold">{cuisines.join(", ")}</h4>
+        <h4>{costForTwo}</h4>
+        <h4>{sla?.deliveryTime} minutes</h4>
+      </div>
     </div>
   );
 };

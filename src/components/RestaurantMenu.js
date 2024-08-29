@@ -29,11 +29,11 @@ const ReastaurantMenu = () => {
   //   ?.card;
 
   return (
-    <div className="Res-menu">
-      <h1>{name}</h1>
-      <p>{cuisines.join(", ")}</p>
-      <h3>{costForTwoMessage}</h3>
-      <ul>
+    <div className="w-[90%]  ">
+      <h1 className="font-bold text-2xl my-4 text-gray-800">{name}</h1>
+      <p className="text-sm border px-3 py-1 rounded-lg bg-gray-50 w-max font-bold text-red-300">{cuisines.join(", ")}</p>
+      <h3 className="m-4 font-semibold text-xl text-green-400">{costForTwoMessage}</h3>
+      <ul className="mx-4 flex flex-col gap-1 ">
         {itemCards &&
           itemCards?.map((itm) => {
             return (

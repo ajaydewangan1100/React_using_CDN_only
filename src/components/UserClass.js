@@ -43,11 +43,11 @@ class UserClass extends React.Component {
     // const { name, location, contact } = this.props;
 
     return (
-      <div className="user-card">
-        <img src={avatar_url} alt={name} className="github-avtar" />
-        <h2>Name: {name}</h2>
-        <h3>Location : {location ? location : "India"}</h3>
-        <h4>Contact : {"contact"}</h4>
+      <div className="p-2 rounded shadow-md w-max flex flex-col hover:scale-105 duration-200 ml-8">
+        <img src={avatar_url} alt={name} className="w-48 h-48 mb-3" />
+        <h2 className="ml-2 font-bold">Name: {name}</h2>
+        <h3 className="ml-2 ">Location : {location ? location : "India"}</h3>
+        <h4 className="ml-2 ">Contact : {"contact"}</h4>
       </div>
     );
   }

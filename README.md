@@ -1050,6 +1050,29 @@ root.render(parent);
     - which react will use, before component loaded fully
      
  
+### Adding CSS - different ways
+
+  1. Same as we used till nor- given class name to elements and using external css, not recommended for big applications
+  
+  2. `SCSS || SASS` - CSS with some super power, but this are also not recommended
+  
+  3. `Styled Components` - Used more for bigger applications
+  
+  4. `Libraries & frameworks` - **Material UI**, **Bootstrap**, **Chakra UI**, **Ant design**, **TailwindCSS**  etc
+  
+  **Tailwind** frameworks
+
+    We will use TailwindCSS
+
+    - We configured our project using parcel
+    - So DOCS for Tailwind with parcel here - [https://tailwindcss.com/docs/guides/parcel](https://tailwindcss.com/docs/guides/parcel)
+    - Follow the CMDs
+    - We can see a file for tailwind configuration - `tailwind.config.js`
+    - Create a `postcss` file also, named - `.postcssrc`
+    - Put the Code given on DOC
+    - *Parcel* will use that *postcssrc* configuration to read *tailwindCSS*
+    - 
+  
   
   
   

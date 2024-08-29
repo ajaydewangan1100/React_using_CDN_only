@@ -46,15 +46,15 @@ class AboutComponent extends Component {
     console.log("Parent" + " render");
 
     return (
-      <div>
-        <h1>About</h1>
-        <p>
+      <div className="p-4 flex flex-col gap-4">
+        <h1 className="font-bold text-2xl">About</h1>
+        <p className="ml-4">
           This is a simple Swiggy Clone for Learning purpose, also used real
           time API of swiggy.
         </p>
         {/* <User name={"Ajay"} location={"Pune"} contact={"@ajaydewangan1100"} /> */}
 
-        <h1>Rendering Class Components</h1>
+        <h1 className="ml-4">Rendering Class Components</h1>
 
         <UserClass
           name={"1st "}
