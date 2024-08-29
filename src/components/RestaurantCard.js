@@ -1,6 +1,6 @@
 import { CDN_URL } from "../utils/constants";
 
-const RestrourantCard = ({ resData }) => {
+const RestaurantCard = ({ resData }) => {
   const {
     name,
     cuisines,
@@ -32,4 +32,21 @@ const RestrourantCard = ({ resData }) => {
   );
 };
 
-export default RestrourantCard;
+// Higher Order Component
+
+// input- RestaurantCard => PromotedRestaurantCard
+
+export const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <span className="absolute p-1 px-2 rounded-tl-lg bg-gray-700 text-xs text-white">
+          Promoted
+        </span>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+
+export default RestaurantCard;

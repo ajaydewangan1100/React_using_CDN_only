@@ -1,4 +1,4 @@
-import RestrourantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { SWIGGY_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
@@ -10,6 +10,10 @@ const Body = () => {
   const [filteredList, setFilteredList] = useState([]);
 
   const [searchText, setSearchText] = useState("");
+
+  // calling Higher Order Component as function,
+  // and storing return component
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -27,6 +31,8 @@ const Body = () => {
       data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  console.log(restaurantList);
 
   // if (restaurantList.length === 0) {
   //   return <Shimmer />;
@@ -84,7 +90,12 @@ const Body = () => {
       <div className="flex flex-wrap gap-x-8 gap-y-4 justify-center ">
         {filteredList.map((c_data, index) => (
           <Link key={c_data.info.id} to={"/restaurant/" + c_data.info.id}>
-            <RestrourantCard resData={c_data} />
+            {/* Conditionaly render - Higher Order component */}
+            {c_data?.info?.avgRating > 4.2 ? (
+              <RestaurantCardPromoted resData={c_data} />
+            ) : (
+              <RestaurantCard resData={c_data} />
+            )}
           </Link>
         ))}
       </div>

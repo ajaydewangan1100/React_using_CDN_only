@@ -736,7 +736,7 @@ root.render(parent);
       - Using `Link` tag I have done - 
         ```
           <Link key={c_data.info.id} to={"/restaurant/" + c_data.info.id}>
-            <RestrourantCard resData={c_data} />
+            <RestaurantCard resData={c_data} />
           </Link>
         ```
 
@@ -1071,11 +1071,49 @@ root.render(parent);
     - Create a `postcss` file also, named - `.postcssrc`
     - Put the Code given on DOC
     - *Parcel* will use that *postcssrc* configuration to read *tailwindCSS*
-    - 
+    - After that, given CSS to all components
+
+
+### Higher Order Components
+
+  - Takes a component as argument and returns enhanced component
+  - Same as Higher Order Function it works
   
+  - **Creating Higher Order Component** - under `RestaurantCard.js`  
+    ```
+      export const withPromotedLabel = (RestaurantCard) => {
+        return (props) => {
+          return (
+            <div>
+              <span className="absolute p-1 px-2 rounded-tl-lg bg-gray-700 text-xs text-white">
+                Promoted
+              </span>
+              <RestaurantCard {...props} />
+            </div>
+          );
+        };
+      };
+    ```
   
+  - **Importing and calling (Creating instance)** - under `Body.js`
+    
+    ```
+      const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+    ```
+
+  - **Using as Component** - under `Body.js`
+    
+    - I am showing *promoted* conditionally when rating is more than `4.2`
+    
+    ```
+      {c_data?.info?.avgRating > 4.2 ? (
+              <RestaurantCardPromoted resData={c_data} />
+            ) : (
+              <RestaurantCard resData={c_data} />
+            )}
+    ```
   
-  
+  - 
   
   
   
