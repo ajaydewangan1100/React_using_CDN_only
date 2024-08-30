@@ -1113,12 +1113,14 @@ root.render(parent);
             )}
     ```
   
-  - 
+  ### Controlled and Uncontrolled Component, Lifting the state-up
+
+    - Important core things related to data of react application
   
+    - React Application consist 2 Layers - **UI Layer** and **Data Layer**
+    - Ui Layer powered by Data Layer
   
-  
-  
-  
+    - 
   
   
    

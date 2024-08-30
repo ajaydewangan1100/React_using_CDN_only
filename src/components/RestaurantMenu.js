@@ -1,4 +1,5 @@
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import ReastaurantMenuListAccordion from "./ReastaurantMenuListAccordion";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 
@@ -14,37 +15,44 @@ const ReastaurantMenu = () => {
   const { name, cuisines, costForTwoMessage } =
     resInfo?.data?.cards[2]?.card?.card?.info;
 
-  console.log(
-    resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-      ?.card
-  );
-  // getting menu list - destructured menu list
-  let [FIND] =
+  // console.log(
+  //   resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+  //     ?.card
+  // );
+
+  // Getting list of menus to create accordion menu
+  const menuCategoriesList =
     resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
-      (crd) => crd.card.card.title === "Recommended"
+      (c) =>
+        c?.card?.card?.["@type"] ==
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
-  const itemCards = FIND && FIND.card?.card.itemCards;
-  // resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-  //   ?.card;
+  // console.log(menuCategoriesList);
+
+  // // getting menu list - destructured menu list
+  // let [FIND] =
+  //   resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+  //     (crd) => crd.card.card.title === "Recommended"
+  //   );
+
+  // const itemCards = FIND && FIND.card?.card.itemCards;
+  // // resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+  // //   ?.card;
 
   return (
-    <div className="w-[90%]  ">
+    <div className="max-w-[750px] w-[60%]  px-4 m-auto ">
       <h1 className="font-bold text-2xl my-4 text-gray-800">{name}</h1>
-      <p className="text-sm border px-3 py-1 rounded-lg bg-gray-50 w-max font-bold text-red-300">{cuisines.join(", ")}</p>
-      <h3 className="m-4 font-semibold text-xl text-green-400">{costForTwoMessage}</h3>
-      <ul className="mx-4 flex flex-col gap-1 ">
-        {itemCards &&
-          itemCards?.map((itm) => {
-            return (
-              <li key={itm.card.info.id}>
-                {itm.card.info.name} - Rs.
-                {itm.card.info.finalPrice / 100 ||
-                  itm.card.info.defaultPrice / 100 ||
-                  itm.card.info.price / 100}
-              </li>
-            );
-          })}
+      <p className="text-sm py-1 bg-gray-50 w-max font-bold text-red-300">
+        {cuisines.join(", ")}
+      </p>
+      <p className="m-4 font-semibold text-xl text-green-400">
+        {costForTwoMessage}
+      </p>
+      <ul className=" flex flex-col bg-gray-100">
+        {menuCategoriesList.map((MCL, idx) => (
+          <ReastaurantMenuListAccordion key={idx} data={MCL?.card?.card} />
+        ))}
       </ul>
     </div>
   );
