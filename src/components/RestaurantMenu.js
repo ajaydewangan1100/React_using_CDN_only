@@ -41,7 +41,7 @@ const ReastaurantMenu = () => {
   // //   ?.card;
 
   return (
-    <div className="max-w-[750px] w-[60%]  px-4 m-auto ">
+    <div className="max-w-[750px] w-[60%]  px-4 m-auto rounded-lg">
       <h1 className="font-bold text-2xl my-4 text-gray-800">{name}</h1>
       <p className="text-sm py-1 bg-gray-50 w-max font-bold text-red-300">
         {cuisines.join(", ")}
@@ -49,9 +49,12 @@ const ReastaurantMenu = () => {
       <p className="m-4 font-semibold text-xl text-green-400">
         {costForTwoMessage}
       </p>
-      <ul className=" flex flex-col bg-gray-100">
-        {menuCategoriesList.map((MCL, idx) => (
-          <ReastaurantMenuListAccordion key={idx} data={MCL?.card?.card} />
+      <ul className=" flex flex-col bg-gray-100 rounded-lg">
+        {menuCategoriesList.map((MCL) => (
+          <ReastaurantMenuListAccordion
+            key={MCL?.card?.card?.title}
+            data={MCL?.card?.card}
+          />
         ))}
       </ul>
     </div>
