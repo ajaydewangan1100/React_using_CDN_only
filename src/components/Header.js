@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 // Header component
 const Header = () => {
@@ -10,6 +11,9 @@ const Header = () => {
 
   // Using Hook for online status
   const isOnline = useOnlineStatus();
+
+  const { loggedInUser } = useContext(UserContext);
+  // console.log(loggedInUser);
 
   return (
     <div className="flex items-center justify-between bg-yellow-300 shadow-md sticky top-0 bg-opacity-35 px-4 h-28">
@@ -39,6 +43,7 @@ const Header = () => {
               {isLoggedIn ? "Logout " : "Login"}
             </button>
           </li>
+          <li className="font-bold text-xs">{loggedInUser && loggedInUser}</li>
         </ul>
       </div>
     </div>

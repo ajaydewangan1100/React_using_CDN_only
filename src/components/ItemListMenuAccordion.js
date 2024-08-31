@@ -1,7 +1,7 @@
 import { CDN_URL } from "../utils/constants";
 
 const ItemList = ({ data }) => {
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="w-full">

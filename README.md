@@ -1150,16 +1150,49 @@ root.render(parent);
       />
     ```
 
+  - On Accordion manu page, based on state showing menu list items,
+  - and given function under onClick
+  - So here we lifted state up
 
+### Creating context and providing Data from one place
 
+  - Its solves the problem of prop drilling
+  - So for these I am creating a context - `UserContext.js`
 
+  - **createContext** - *Utility Context*
 
+    ```
+      import { createContext } from "react";
 
+      const UserContext = createContext({
+        loggedInUser: "Default User",
+      });
 
+      export default UserContext;
+    ```
 
+    - Using the values provided by context - `const { loggedInUser } = useContext(UserContext)`
+    - Using `useContext` we can get value of provided context anywhere on our application,
+    - and then can use that value anywhere under that component, I used under `Header.js`
 
+    - Now we I need to use it under `About.js`, which is an `class Component`,
+    - and there is **no hooks** we can use under *class component*
+      
+      ```
+        import { createContext } from "react";
 
+        <UserContext.Consumer>
+            {({ loggedInUser }) => (
+              <h1 className="font-bold text-xl text-green-400">
+                {loggedInUser}
+              </h1>
+            )}
+          </UserContext.Consumer>
+      ``` 
+    - We can create a consumer under class component, 
+    - which must provided by every context exported
 
+  
 
 
 

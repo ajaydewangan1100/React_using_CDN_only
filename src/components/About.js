@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import User from "./User";
 import UserClass from "./UserClass";
+import UserContext from "../utils/UserContext";
 
 // const About = () => {
 //   return (
@@ -35,19 +36,32 @@ import UserClass from "./UserClass";
 class AboutComponent extends Component {
   constructor(props) {
     super(props);
-    console.log("Parent" + " Cunstrctor");
+    // console.log("Parent" + " Cunstrctor");
   }
 
   componentDidMount() {
-    console.log("Parent" + " componentDidMount");
+    // console.log("Parent" + " componentDidMount");
   }
 
   render() {
-    console.log("Parent" + " render");
+    // console.log("Parent" + " render");
 
     return (
       <div className="p-4 flex flex-col gap-4">
         <h1 className="font-bold text-2xl">About</h1>
+        <div className="p-3 border rounded-lg w-max">
+          <UserContext.Consumer>
+            {({ loggedInUser }) => (
+              <h1 className="font-bold text-xl text-green-400">
+                {loggedInUser}
+              </h1>
+            )}
+          </UserContext.Consumer>
+          <span className="text-gray-600 ">
+            This user name is coming from Context, and used under Class
+            component
+          </span>
+        </div>
         <p className="ml-4">
           This is a simple Swiggy Clone for Learning purpose, also used real
           time API of swiggy.

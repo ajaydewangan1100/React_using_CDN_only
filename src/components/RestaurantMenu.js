@@ -8,7 +8,7 @@ const ReastaurantMenu = () => {
   const { resId } = useParams();
 
   // Creating state variable to pass to child components, to make them controlled
-  const [showItems, setShowItems] = useState(2);
+  const [showItems, setShowItems] = useState(0);
 
   // Used hook here instead of fetching code
   const resInfo = useRestaurantMenu(resId);

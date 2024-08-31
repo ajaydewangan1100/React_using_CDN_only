@@ -32,7 +32,7 @@ const Body = () => {
     );
   };
 
-  console.log(restaurantList);
+  // console.log(restaurantList);
 
   // if (restaurantList.length === 0) {
   //   return <Shimmer />;
