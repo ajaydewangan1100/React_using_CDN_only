@@ -1,3 +1,4 @@
+import { useState } from "react";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import ReastaurantMenuListAccordion from "./ReastaurantMenuListAccordion";
 import Shimmer from "./Shimmer";
@@ -5,6 +6,9 @@ import { useParams } from "react-router-dom";
 
 const ReastaurantMenu = () => {
   const { resId } = useParams();
+
+  // Creating state variable to pass to child components, to make them controlled
+  const [showItems, setShowItems] = useState(2);
 
   // Used hook here instead of fetching code
   const resInfo = useRestaurantMenu(resId);
@@ -50,10 +54,14 @@ const ReastaurantMenu = () => {
         {costForTwoMessage}
       </p>
       <ul className=" flex flex-col bg-gray-100 rounded-lg">
-        {menuCategoriesList.map((MCL) => (
+        {menuCategoriesList.map((MCL, index) => (
           <ReastaurantMenuListAccordion
             key={MCL?.card?.card?.title}
             data={MCL?.card?.card}
+            showItems={showItems === index ? true : false}
+            setShowItems={() => {
+              showItems === index ? setShowItems(null) : setShowItems(index);
+            }}
           />
         ))}
       </ul>

@@ -1113,14 +1113,63 @@ root.render(parent);
             )}
     ```
   
-  ### Controlled and Uncontrolled Component, Lifting the state-up
+  - Till now all CSS done
+  - Created Menu list and Items list
+  - And given CSS styles
+  
+### Controlled and Uncontrolled Component, Lifting the state-up
 
-    - Important core things related to data of react application
+  - Important core things related to data of react application
+
+  - React Application consist 2 Layers - **UI Layer** and **Data Layer**
+  - Ui Layer powered by Data Layer
+
+  - **React Developer Tools** Extension installed
   
-    - React Application consist 2 Layers - **UI Layer** and **Data Layer**
-    - Ui Layer powered by Data Layer
-  
-    - 
-  
-  
+  - For making a controlled component we need to list the state-up
+  - It means that we need to give states of child to parent
+  - So parent will controll the child component
+  - and child wouldn't having its own state
    
+  - On my project i am making the item list accordion controlled
+  - It means that when anyone clicks on any of the accordion,
+  - other should be collapsed 
+  
+  - I created a state on parent - `RestaurentMenu.js` 
+    - `const [showItems, setShowItems] = useState(2);`
+  
+  - Then provided the set Function and given access for showItems, based on the state value
+    ```
+      <ReastaurantMenuListAccordion
+        key={MCL?.card?.card?.title}
+        data={MCL?.card?.card}
+        showItems={showItems === index ? true : false}
+        setShowItems={() => {
+          showItems === index ? setShowItems(null) : setShowItems(index);
+        }}
+      />
+    ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
