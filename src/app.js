@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -7,6 +7,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import ReastaurantMenu from "./components/RestaurantMenu";
+import UserContext from "./utils/UserContext";
 // import Grocery from "./components/Grocery";
 
 // Lazy loading of components, we need to import it like this
@@ -14,12 +15,26 @@ const Grocery = lazy(() => import("./components/Grocery"));
 
 // Main app LAyout
 const AppLayout = () => {
+  const [dynamicData, setDynamicData] = useState({});
+
+  useEffect(() => {
+    const data = {
+      name: "Dynamic Name",
+      details:
+        "This data Provided using Context Provider, Demo for Provider, consumer and useContext hook things",
+    };
+    setDynamicData(data);
+  }, []);
+
   return (
     <div className="app ">
-      <Header />
-      <div className="p-8 max-w-[1440px] w- shadow-lg rounded-md m-auto">
-        <Outlet />
-      </div>
+      <UserContext.Provider
+        value={{ loggedInUser: dynamicData?.name, setDynamicData }}>
+        <Header />
+        <div className="p-8 max-w-[1440px] w- shadow-lg rounded-md m-auto">
+          <Outlet />
+        </div>
+      </UserContext.Provider>
     </div>
   );
 };

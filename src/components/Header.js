@@ -6,7 +6,7 @@ import UserContext from "../utils/UserContext";
 
 // Header component
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   // let btnName = "Login";
 
   // Using Hook for online status
@@ -43,7 +43,9 @@ const Header = () => {
               {isLoggedIn ? "Logout " : "Login"}
             </button>
           </li>
-          <li className="font-bold text-xs">{loggedInUser && loggedInUser}</li>
+          <li className="font-bold text-xs">
+            {isLoggedIn && loggedInUser && loggedInUser}
+          </li>
         </ul>
       </div>
     </div>

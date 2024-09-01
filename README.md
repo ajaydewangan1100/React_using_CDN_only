@@ -1191,9 +1191,30 @@ root.render(parent);
       ``` 
     - We can create a consumer under class component, 
     - which must provided by every context exported
+    - **Remember it takes callback function** which can access data Provided by context
 
-  
+  - **Dynamic Context data**
 
+    - We can make a `useEffect` to fetch data,
+    - Then we can provide using `Contaxt.Provider`,
+    - Here on my project I am providing under `app.ja` and wrapping whole components by `Contaxt.Provider`,
+    - So I will be able consume data from anywhere in the application
+    - And then we can provide any data with that - `Contaxt.Provider`
+
+      ```
+        <UserContext.Provider value={{ loggedInUser: dynamicData?.name }}>
+          <Header />
+          <div className="p-8 max-w-[1440px] w- shadow-lg rounded-md m-auto">
+            <Outlet />
+          </div>
+        </UserContext.Provider>
+      ```
+
+    - **Dynamically change the data** if any action perform on any page of the application
+    - Here I will Change the Dynamic Name, using input box
+    - for that i am adding an input box under `Body.js`
+    - And I am updating the globle state `dynamicData` using `setDynamicData` which are present under `app.js`
+    - And i able to see it is updating everywhere
 
 
 

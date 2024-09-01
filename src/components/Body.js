@@ -1,9 +1,10 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SWIGGY_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -49,6 +50,10 @@ const Body = () => {
       </div>
     );
 
+  // Dynamic Changeing Data of page from a single place
+  const { loggedInName, setDynamicData } = useContext(UserContext);
+  console.log(useContext(UserContext));
+
   return restaurantList.length === 0 ? (
     <Shimmer />
   ) : (
@@ -64,7 +69,7 @@ const Body = () => {
             onChange={(e) => setSearchText(e.target.value)}
           />
           <button
-            className="bg-gray-50 hover:bg-yellow-100 rounded-md px-3 py-1"
+            className="bg-gray-50 hover:bg-yellow-100 rounded-md px-3 py-1 font-bold text-gray-700"
             onClick={() => {
               const filtered = restaurantList.filter((res) =>
                 res.info.name
@@ -86,6 +91,19 @@ const Body = () => {
           }}>
           Top Rated Restaurants
         </button>
+        <div className="flex gap-4">
+          <input
+            type="text"
+            className="border rounded bg-gray-50 hover:bg-gray-100 focus:border-gray-200 appearance-none p-2 w-72"
+            placeholder="Type Dynamic User Name Here..."
+            value={loggedInName}
+            onChange={(e) => {
+              setDynamicData((data) => {
+                return { ...data, name: e.target.value };
+              });
+            }}
+          />
+        </div>
       </div>
       <div className="flex flex-wrap gap-x-8 gap-y-4 justify-center ">
         {filteredList.map((c_data, index) => (
