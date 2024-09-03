@@ -8,6 +8,9 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import ReastaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utils/UserContext";
+// Redux Provider and store import
+import { Provider } from "react-redux";
+import appStore from "./store/appStore";
 // import Grocery from "./components/Grocery";
 
 // Lazy loading of components, we need to import it like this
@@ -28,13 +31,16 @@ const AppLayout = () => {
 
   return (
     <div className="app ">
-      <UserContext.Provider
-        value={{ loggedInUser: dynamicData?.name, setDynamicData }}>
-        <Header />
-        <div className="p-8 max-w-[1440px] w- shadow-lg rounded-md m-auto">
-          <Outlet />
-        </div>
-      </UserContext.Provider>
+      {/* Store Provider */}
+      <Provider store={appStore}>
+        <UserContext.Provider
+          value={{ loggedInUser: dynamicData?.name, setDynamicData }}>
+          <Header />
+          <div className="p-8 max-w-[1440px] w- shadow-lg rounded-md m-auto">
+            <Outlet />
+          </div>
+        </UserContext.Provider>
+      </Provider>
     </div>
   );
 };

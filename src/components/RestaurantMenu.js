@@ -25,8 +25,9 @@ const ReastaurantMenu = () => {
   // );
 
   // Getting list of menus to create accordion menu
-  const menuCategoriesList =
-    resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+  const menuCategoriesList = resInfo?.data?.cards
+    .filter((c) => c.hasOwnProperty("groupedCard"))[0]
+    ?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) =>
         c?.card?.card?.["@type"] ==
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"

@@ -52,7 +52,7 @@ const Body = () => {
 
   // Dynamic Changeing Data of page from a single place
   const { loggedInName, setDynamicData } = useContext(UserContext);
-  console.log(useContext(UserContext));
+  // console.log(useContext(UserContext));
 
   return restaurantList.length === 0 ? (
     <Shimmer />

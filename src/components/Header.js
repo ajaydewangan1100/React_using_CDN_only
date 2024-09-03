@@ -3,6 +3,7 @@ import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 // Header component
 const Header = () => {
@@ -15,8 +16,12 @@ const Header = () => {
   const { loggedInUser } = useContext(UserContext);
   // console.log(loggedInUser);
 
+  // Subscribing to store
+  const cartItems = useSelector((store) => store.cart.items);
+  // console.log(cartItems);
+
   return (
-    <div className="flex items-center justify-between bg-yellow-300 shadow-md sticky top-0 bg-opacity-35 px-4 h-28">
+    <div className="z-50 flex items-center justify-between bg-yellow-300 shadow-md sticky top-0 bg-opacity-35 px-4 h-28">
       <div className="logo-container">
         <img src={LOGO_URL} className="w-32 h-[80%] rounded-md" />
       </div>
@@ -35,7 +40,7 @@ const Header = () => {
           <li>
             <Link to="/contact">Contact US</Link>
           </li>
-          <li>Cart</li>
+          <li className="font-bold text-lg ">Cart({cartItems.length} items)</li>
           <li>
             <button
               className="px-3 py-1 rounded-lg text-gray-200 bg-violet-600 hover:bg-violet-700"

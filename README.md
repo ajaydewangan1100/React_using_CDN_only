@@ -1216,12 +1216,106 @@ root.render(parent);
     - And I am updating the globle state `dynamicData` using `setDynamicData` which are present under `app.js`
     - And i able to see it is updating everywhere
 
+### REDUX TOOLKIT - RTK
+  Central State Management Library 
 
+  - **FLOW**
+    
+    ![Redux Flow Image](Learning_related_media/REDUX_Flow.png)
 
+  - Install - `@reduxjs/toolkit` and `react-redux`
 
+  - **Build a Store** - Created a folder **store** and added file `appStore.js`
+    
+    ```
+      const { configureStore } = require("@reduxjs/toolkit");
 
+      const appStore = configureStore();
 
+      export default appStore;
 
+    ```
+
+  - **Provide store to app** (Wrap the App using store)
+    
+    ```
+      import { Provider } from "react-redux";
+      import appStore from "./store/appStore";
+
+      <Provider store={appStore}>
+        <UserContext.Provider
+          value={{ loggedInUser: dynamicData?.name, setDynamicData }}>
+          <Header />
+          <div className="p-8 max-w-[1440px] w- shadow-lg rounded-md m-auto">
+            <Outlet />
+          </div>
+        </UserContext.Provider>
+      </Provider>
+    ```
+
+  - **Create Slice** (Cart Slice) - created a new file - `cartSlice.js`
+
+    - `createSlice()` is function takes configuration for make a slice
+    
+    ```
+      import { createSlice } from "@reduxjs/toolkit";
+
+      const cartSlice = createSlice({
+        name: "cart",
+        initialState: {
+          items: [],
+        },
+        reducers: {
+          addItem: (state, action) => {
+            state.items.push(action.payload);
+          }
+        },
+      });
+
+      export const { addItem } = cartSlice.actions;
+
+      export default cartSlice.reducer;
+    ```
+
+  - **Add Slice to Store**
+
+    ```
+    const appStore = configureStore({
+      reducer: {
+        cart: cartSlice,
+      },
+    });
+    ```
+
+  - **NOTE** - `appStore` is managing all slices(all little stores), 
+  - that's why we need to provide all slices to the appStore as reducer,
+  - and that slices have their own reducers 
+
+  - **Subscribe to store using Slector**
+
+    ```
+      import { useSelector } from "react-redux";
+
+      const cart = useSelector((store) => store.cart.items);
+    ```
+
+    - *Remember* - `useSelector()` have access to whole store,
+    -  and from that we can take any portion of the store we want
+  
+  - **Dispatch** (action)
+    ```
+      import { useDispatch } from "react-redux";
+
+      const dispatch = useDispatch();
+
+      dispatch(addItem(item));
+    ``` 
+
+  - Till now all store things done - 
+    
+    - Here is an Flow diagram for `Redux`
+
+    ![Redux Flow](Learning_related_media/REDUX_Flow.png)
 
 
 
