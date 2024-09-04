@@ -40,7 +40,9 @@ const Header = () => {
           <li>
             <Link to="/contact">Contact US</Link>
           </li>
-          <li className="font-bold text-lg ">Cart({cartItems.length} items)</li>
+          <li className="font-bold text-lg ">
+            <Link to="/cart">Cart({cartItems.length} items)</Link>
+          </li>
           <li>
             <button
               className="px-3 py-1 rounded-lg text-gray-200 bg-violet-600 hover:bg-violet-700"

@@ -43,7 +43,7 @@ const ItemList = ({ data }) => {
             />
             <button
               onClick={() => {
-                handleAddItem(item?.card?.info);
+                handleAddItem(item);
               }}
               className="w-16 absolute py-2  text-xs bottom-[-16] left-[2rem] shadow-xl rounded-md bg-white hover:bg-gray-100 duration-200 ">
               ADD +

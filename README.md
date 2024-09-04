@@ -1311,13 +1311,27 @@ root.render(parent);
       dispatch(addItem(item));
     ``` 
 
-  - Till now all store things done - 
-    
-    - Here is an Flow diagram for `Redux`
+  - Till now all store things done 
 
-    ![Redux Flow](Learning_related_media/REDUX_Flow.png)
+### Creating Cart Page
 
+  - Added path to `appRouter` -
 
+    ```
+      {
+        path: "/cart",
+        element: <Cart />,
+      }
+    ```
+  
+  - Making cart tab as a *link* - `<Link to="/cart">Cart({cartItems.length} items)</Link>`
 
+  - `Cart.js` created -
+
+    ```
+      const
+    ```
+
+  - 
 
 

@@ -11,6 +11,7 @@ import UserContext from "./utils/UserContext";
 // Redux Provider and store import
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
+import Cart from "./components/Cart";
 // import Grocery from "./components/Grocery";
 
 // Lazy loading of components, we need to import it like this
@@ -72,6 +73,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <ReastaurantMenu />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
